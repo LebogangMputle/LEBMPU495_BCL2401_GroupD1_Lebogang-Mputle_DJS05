@@ -59,8 +59,6 @@ const states = [initial];
 
 let notifier = []; //keeps references.
 
-const Notification = [];
-
 export const update = (action) => {
         if (typeof action !== 'function') {
             throw new Error("action is required to be function")
@@ -68,6 +66,9 @@ export const update = (action) => {
         //object.freeze means it cant be modified
         const prev = Object.freeze({...states[0]}); //... makes sure they cant be mutated.
         const next = Object.freeze({...action(prev)});
+
+        const handler = (Notify) => notify(prev, next)
+        notifiers.forEach(Notify);
 
         states.unshift(next)    //move it to the front
     };
