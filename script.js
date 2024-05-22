@@ -9,3 +9,22 @@ const counterReducer = (state = {count: 0}, action) => {
             return state;
     }
 };
+
+// Store implementation
+const store = {
+    _state: counterReducer(undefined, {}), // Initial state
+    _subscribers: [],
+  
+    getState() {
+      return this._state;
+    },
+  
+    dispatch(action) {
+      this._state = counterReducer(this._state, action);
+      this._subscribers.forEach(subscriber => subscriber());
+    },
+  
+    subscribe(subscriber) {
+      this._subscribers.push(subscriber);
+    },
+  };
