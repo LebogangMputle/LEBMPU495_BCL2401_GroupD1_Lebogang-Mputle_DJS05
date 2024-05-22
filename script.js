@@ -28,3 +28,8 @@ const store = {
       this._subscribers.push(subscriber);
     },
   };
+
+// Usage
+
+// Initial state verification (Scenario 1)
+console.log("Initial State:", store.getState()); // Output: { count: 0 }
