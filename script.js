@@ -33,3 +33,8 @@ const store = {
 
 // Initial state verification (Scenario 1)
 console.log("Initial State:", store.getState()); // Output: { count: 0 }
+
+// Dispatch actions to update state
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'DECREMENT' });
