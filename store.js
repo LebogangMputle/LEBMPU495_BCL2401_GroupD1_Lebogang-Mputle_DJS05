@@ -57,7 +57,7 @@ const states = [initial];
  * @type {Array<Notify>} 
  */
 
-const notifier = [];
+let notifier = []; //keeps references.
 
 const Notification = [];
 
@@ -77,10 +77,12 @@ export const update = (action) => {
  * @returns  
  */
 export const subscribe = (Notify) => {
-    notifier.push(Notify);
+    notifiers.push(Notify);
 
     const unsubscribe = () => {
-
+        const handler = (current) => current !== Notify;
+        const results = notifiers.filter(handler);
+        notifiers = results;
     }
     return unsubscribe;
 };
