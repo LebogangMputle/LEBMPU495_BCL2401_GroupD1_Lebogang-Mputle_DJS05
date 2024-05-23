@@ -3,13 +3,13 @@
 import {subscribe, update, Action, Notify } from "./store.js"
 
 const localUnsubscribe = (prev, next) =>  console.log(prev, next);
-const unsubscribe = subscribe (localUnsubscribe);
+const unsubscribe = subscribe(localUnsubscribe);
 
 /**
  * @type {Notify}
  */
 const htmlHandler = (next, prev) => {
-    if (prev.wind.value !== next.wind.value) return
+    if (prev.wind.value === next.wind.value) return
 
     const div = document.createElement('div');
     div.innerText = next.wind.value.toString();

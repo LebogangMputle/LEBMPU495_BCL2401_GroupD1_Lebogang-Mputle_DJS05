@@ -22,8 +22,8 @@
  * @returns {State}
  */
 
-export const Action = []
-
+export const Action = {};
+export const Notify = {};
 /**
  * @callback Update
  * @param {Action}
@@ -77,14 +77,14 @@ export const update = (action) => {
         const prev = Object.freeze({...states[0]}); //... makes sure they cant be mutated.
         const next = Object.freeze({...action(prev)});
 
-        const localUnsubscribe = (notify) => notify(prev, next)
+        const localUnsubscribe = (notify) => notify(next, prev)
         notifiers.forEach(localUnsubscribe);  //replaces a loop
         states.unshift(next)    //move it to the front
     };
 
 /**
- * @param {Notify} handler
- * @returns {}
+ * @param {Notify} notify
+ * @returns {Emptyfn}
  */
 export const subscribe = (Notify) => {
     notifiers.push(Notify);
