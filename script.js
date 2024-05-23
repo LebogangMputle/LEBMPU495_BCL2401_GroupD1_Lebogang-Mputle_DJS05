@@ -179,3 +179,4 @@ store.dispatch(subtract(1)); // State: { count: 1 }
 /**
  * Dispatches a RESET action to the store.
  */
+store.dispatch(reset());
