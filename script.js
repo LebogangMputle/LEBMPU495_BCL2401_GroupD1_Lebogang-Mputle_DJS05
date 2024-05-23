@@ -1,7 +1,7 @@
 import {subscribe, update, Action } from './store.js'
 
 const localUnsubscribe = (prev, next) =>  console.log(prev, next);
-const unsubscribe = subscribe (prev, next);
+const unsubscribe = subscribe (localUnsubscribe);
 
 
 /**
