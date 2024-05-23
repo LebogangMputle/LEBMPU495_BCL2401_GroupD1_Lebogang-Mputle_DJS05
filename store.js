@@ -22,6 +22,8 @@
  * @returns {State}
  */
 
+export const Action = []
+
 /**
  * @callback Update
  * @param {Action}
@@ -29,7 +31,11 @@
 
 /**
  * @callback Subscribe
- * @param {Notify}
+ * @param {Notify} notify
+ */
+
+/**
+ * @callback Emptyfn
  */
 
 /**
@@ -57,8 +63,12 @@ const states = [initial];
  * @type {Array<Notify>} 
  */
 
-let notifier = []; //keeps references.
+let notifiers = []; //keeps references.
 
+/**
+ * 
+ * @param {Action} action 
+ */
 export const update = (action) => {
         if (typeof action !== 'function') {
             throw new Error("action is required to be function")
@@ -67,15 +77,14 @@ export const update = (action) => {
         const prev = Object.freeze({...states[0]}); //... makes sure they cant be mutated.
         const next = Object.freeze({...action(prev)});
 
-        const handler = (Notify) => notify(prev, next)
-        notifiers.forEach(Notify);
-
+        const localUnsubscribe = (notify) => notify(prev, next)
+        notifiers.forEach(localUnsubscribe);  //replaces a loop
         states.unshift(next)    //move it to the front
     };
 
 /**
  * @param {Notify} handler
- * @returns  
+ * @returns {}
  */
 export const subscribe = (Notify) => {
     notifiers.push(Notify);
