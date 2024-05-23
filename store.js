@@ -13,7 +13,7 @@
 /**
  * @callback Notify
  * @param {State} next
- * @param {state} prev
+ * @param {State} prev
  */
 
 /**
