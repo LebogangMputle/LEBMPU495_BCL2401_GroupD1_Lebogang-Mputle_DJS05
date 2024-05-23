@@ -1,4 +1,4 @@
-// Initial state
+// Initial state,
 /**
  * The initial state of the application.
  * @type {Object}
